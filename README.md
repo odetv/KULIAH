@@ -13,6 +13,8 @@
 * [C](https://en.wikipedia.org/wiki/C_(programming_language))
 * [C++](https://en.wikipedia.org/wiki/C%2B%2B)
 * [Assembly](https://en.wikipedia.org/wiki/Assembly_language)
+* [HTML](https://en.wikipedia.org/wiki/HTML)
+* [PHP](https://en.wikipedia.org/wiki/PHP)
 * [Java](https://en.wikipedia.org/wiki/Java_(programming_language))
 
 ## Bugs & Tester
