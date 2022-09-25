@@ -21,8 +21,10 @@
 * Jika menemukan bug jangan lupa buka [Issues](https://github.com/odetv/KULIAH/issues)
 
 ## Requirements
-* [Compiler C/C++/Java](https://code.visualstudio.com/Download)
+* [Compiler C/C++/HTML/PHP/Java](https://code.visualstudio.com/Download)
 * [Compiler Assembly](https://www.tutorialspoint.com/compile_assembly_online.php)
+* [XAMPP](https://www.apachefriends.org/download.html)
+* [Composer](https://getcomposer.org/download/)
 
 ## Thanks to
 - Tuhan Yang Maha Esa
