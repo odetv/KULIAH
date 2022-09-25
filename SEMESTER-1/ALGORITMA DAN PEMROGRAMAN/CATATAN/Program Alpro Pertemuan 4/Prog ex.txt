@@ -1,0 +1,80 @@
+#include <cstdio>
+
+int A, B, C, D;
+float FA, FB, FC, FD;
+
+int main()
+{
+	printf("Saya sudah makan.\n");
+	printf("Adik belum makan.\n"); // file saya ada di D:\\myDocument\gambar
+	printf("file saya ada di D:\\\\myDocument\\gambar");
+	
+	A = 5;
+	B = 10;
+	C = 15;
+	
+	printf("\n\n");
+	printf("%i, %i, %i\n\n", A, B, C);
+	
+/*	printf("Masukkan satu bilangan bulat: ");
+	scanf("%i", &A);
+	printf("Nilai A = %i\n\n", A);
+	
+	printf("Masukkan 3 bilangan bulat dipisah oleh koma: ");
+	scanf("%i,%i,%i", &A, &B, &C);
+	D = A + B + C;
+	printf("%i + %i + %i = %i\n\n", A, B, C, D);
+*/	
+	
+	printf("Masukkan 3 bilangan real dipisah oleh koma: ");
+	scanf("%f,%f,%f", &FA, &FB, &FC);
+	FD = FA + FB + FC;
+	printf("%f + %.1f + %.4f = %.2f", FA, FB, FC, FD);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int A, B, C;
+char Kata[11];
+char H;
+
+int main()
+{
+	cout << "Saya sudah makan." << endl << "Adik belum makan." << endl << endl;
+	
+	A = 10;
+	B = 15;
+	C = 20;
+					//10, 15, 20
+	cout << A <<", "<< B <<", "<< C << endl;
+	
+					// bilangan saya bernilai 10, 15, dan 20.
+	cout << "bilangan saya bernilai " << A << ", " << B << ", dan " << C << "." << endl << endl;
+	
+	strcpy(Kata, "Bola");
+	
+	cout << Kata << endl << endl;
+	
+/*	cout << "Masukkan sebuah bilangan bulat: ";
+	cin >> A;
+	cout << "Bilangan yang anda masukkan adalah: " << A << endl << endl;
+*/	
+	cout << "Masukkan 3 bilangan bulat dipisahkan koma: ";
+	cin >> A >> H >> B >> H >> C;
+	
+	cout << "Nilai A = " << A << endl << "Nilai B = "<< B << endl << "Nilai C = " << C;
+	
+	
+	return 0;
+}

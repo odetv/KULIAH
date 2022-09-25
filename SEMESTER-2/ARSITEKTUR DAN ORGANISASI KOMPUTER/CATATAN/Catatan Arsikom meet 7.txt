@@ -1,0 +1,78 @@
+ARSIKOM meet 7, 22 April 2022
+
+dat -> Base       |       | 0
+                  |       | 1
+                  |       | 2    index
+                  |  25   | 3
+                  |       | 4
+
+dat[3] = 25
+*****************************************
+*****************************************
+dat -> Base 1000  |       | 0
+            ----> |       | 1
+                  |       | 2    index
+                  |  25   | 3
+                  |       | 4
+
+dat + 3
+1000 + 3
+1003
+
+Efektif Address = Base + Index
+       Base 1000
+            ----> |       | 1
+                  |       | 2    index
+  1000 + 3 = 1003 |  25   | 3
+                  |       | 4
+                  |       |
+                  |       |
+                  |       |
+                  |       |   Displacement = 8 (menyimpan base sebanyak 8)
+                  |       |   Efektif Address = Base + Index + Displacement
+                  |       |
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+REG	W=0	W=1
+
+Perintah 2 byte=1 Word:
+
+               Opcode D W   MOD   REG       R/M
+MOV AX, BX --> 100010 0 1   11    011(BX)   000(AX)
+MOV BL, AL --> 100010 0 0   11    000(AL)   011(BL)
+
+Register to Register
+     Destination
+MOV  AX,            myData
+MOV  myData         AX
+
+
+MOV  AX,  50
+MOV  AL,  25
+
+MOV  myData, 50
+MOV  [BX],   75   //memasukkan angka langsung ke memori
+
+                              Opcode  D  W  MOD  REG  R/M
+MOV  BP,  SP  --> 89 E5 -->   100010  0  1  11   100  101
+                                MOV              SP   BP
+
+
+PUSH ES --> 06 --> 0000 0110 (biner)
+
+                      MOV       Opcode  D  W   MOD REG  R/M  Disp/8
+MOV CX, [BP+6] --> 88 4E 06 --> 100010  1  1   01  001  110  00000110
+         BP + displacement 6 = 1 byte data
+
+Disp/8 = displacement 8
+
+                 loop      Opcode D W MOD REG R/M
+MOV AL, [SI] --> 8A 04 --> 100010 1 0 0   0   100
+
+memori tanpa displacement = mode 00
+memori displacement 8bit = mode 01
+memori displacement 16bit = mode 10
+
+                           Opcode D W MOD  REG  R/M
+MOV [DI], AL --> 88 05 --> 100010 0 0 00   000  101

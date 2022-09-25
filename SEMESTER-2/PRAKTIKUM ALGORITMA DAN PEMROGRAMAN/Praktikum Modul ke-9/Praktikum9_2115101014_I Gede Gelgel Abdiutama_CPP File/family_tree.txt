@@ -1,0 +1,152 @@
+#include <cstdio>
+#include <stdlib.h>
+#include <conio.h>
+#include <string.h>
+#define MAX 50
+
+void menu();
+void add_root();
+void add_member();
+void display_index(struct family array[], int j, int n);
+void display_family(struct family array[], int j, int n);
+void lineage(struct family array[], int search, int x, int m);
+void display_lineage(int x);
+
+struct family{
+	char name[30];
+	int indexParent;
+};
+char again;
+int n = -1;
+struct family array[MAX];
+char rec[MAX][MAX];
+
+void menu(){
+	system ("cls");
+	printf ("MENU :\n");
+	printf ("1. Add Family Member\n");
+	printf ("2. Display Family Member\n");
+	printf ("3. Lineage Family Member\n");
+	printf ("4. Exit\n");
+}
+
+int main(){
+	int input;
+	int search;
+	
+	do{
+		menu();
+		printf("\nChoose Menu : ");
+		scanf("%i", &input);
+		switch (input){
+			case 1:{
+				if (n==-1){
+					add_root();
+				}else{
+					add_member();
+				}
+				break;
+			}
+			case 2:{
+				system("cls");
+				printf("tRoot\n");
+				printf("%s\n", array[-1].name);
+				printf("Index\tName\tParent's Index\n");
+				display_family(array, 0, n);
+				break;
+			}
+			case 3:{
+				system("cls");
+				printf("Index\tName\n");
+				display_index(array, 0, n);
+				printf("\nEnter Index of Member Family : ");
+				scanf("%i", &search);
+				printf("Line age : ");
+				int x = 0;
+				int m;
+				lineage(array, search, x, m);
+				break;
+			}
+			case 4:{
+				printf("Exit Program");
+				break;
+			}
+		}getch();
+	}while (input != 4);
+}
+
+void add_root(){
+	system("cls");
+	printf("Index %i\n", n);
+	printf("Enter Root Name : ");fflush(stdin);
+	scanf("%[^\n]", &array[n].name);
+	n++;
+	add_member();
+}
+
+void add_member(){
+	add:
+	system("cls");
+	printf("Index\tName\n");
+	display_index(array, 0, n);
+	printf("\nindex %i\n", n);
+	printf("Enter Name : ");fflush(stdin);
+	scanf("%[^\n]", &array[n].name);
+	printf("Enter Index Parent : ");
+	scanf("%i", &array[n].indexParent);
+	n++;
+	
+	addAgain:
+	printf("Add Another? (y/n) :");
+	scanf("%s", &again);
+	if (again == 'y' | again == 'Y'){
+		goto add;
+	}else if (again == 'n' | again == 'N'){
+		main();
+	}else {
+		goto addAgain;
+	}
+}
+
+void display_index(struct family array[], int j, int n){
+	if (j>=n){
+		return;	
+	}else{
+		printf("%i\t%s\n", j, array[j].name);
+		display_index(array, j+1, n);
+	}
+}
+
+void display_family(struct family array[], int j, int n){
+	if (j>=n){
+		return;
+	}else{
+		printf("%i\t%s\t%i\n", j, array[j].name, array[j].indexParent);
+		display_family(array, j+1, n);
+	}
+}
+
+void lineage(struct family array[], int search, int x, int m){
+	int index = search;
+	if(index<=-1){
+		strcpy(rec[x], array[index].name);
+		display_lineage(x);
+		return;
+	}else{
+		strcpy(rec[x], array[index].name);
+		search=array[index].indexParent;
+		x++;
+		lineage(array, search, x, m);
+	}
+}
+
+void display_lineage(int x){
+	if (x==0){
+		printf("%s",rec[0]);
+		return;
+	}else{
+		printf("%s",rec[x]);
+		printf(" -> ");
+		display_lineage(x-1);
+	}
+}

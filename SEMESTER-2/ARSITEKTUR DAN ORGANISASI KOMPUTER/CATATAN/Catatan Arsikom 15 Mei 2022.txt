@@ -1,0 +1,107 @@
+ARSIKOM 13 MEI 2022
+
+    r/m,  reg
+MOV [SI], AX
+MOV  BX,  AX
+MOV  AL,  BL
+
+     AX, mem
+MOV  AX, bil1
+
+     AL, mem
+MOV  AL, bil2
+
+     reg, imm
+MOV  AX,  25
+
+    reg16, imm16
+MOV  DX  ,  25
+  =  B8  +  reg16 (reg DX)
+     1011 1000
+           010
+     ---------- +
+     1011 1010
+
+HASIL = 1011 1010 0000 0000 0001 1001
+        B    A    0    0    1    9     => BA 00 19
+
+BA = Instruksi
+00 19 = data = 25
+
+MOV AL, 5
+     w reg data
+1011 0 000 0000 0101
+       AL  1 byte
+hexa = B0 05
+
+MOV BL, 30
+     w reg data
+1011 0 011 0001 1110
+hexa = B3 1E
+30 = 11110 -> ditambahkan 0 didepannya untuk membuat byte utuh
+
+MOV  DX, 2Ah
+     w reg data
+1011 1 010 0000 0000 0010 1010
+hexa = BA 00 2A
+
+ADD  AX, DX     DX  AX
+Opcode d w  MOD REG R/M
+000000 0 1  11  010 000 = 0000 0001 1101 0000
+                   hexa = 01 B0
+
+ADD AX, 250
+Opcode  w data
+0000010 1 0000 0000 1111 1010 = 0000 0101 0000 000 1111 1010
+                         hexa = 05 00 FA
+data = AX = 2 byte
+program = 1 byte = 05
+data = 2 byte = 00 FA
+
+PUSH AX
+      REG
+01010 000
+0101 0000 = 0101 000
+= 50
+
+PUSH DX
+      REG
+01010 010 = 0101 0010
+0101 0010
+= 52
+
+PUSH BP
+      REG
+01010 101 = 0101 0101
+= 55
+
+PUSH ES
+0000 0110
+0000 0000
+---------- +
+0000 0110  = 06
+
+PUSH DS
+0000 0110
+0001 1000
+---------- +
+0001 1110 = 1E
+
+0000 0110 (PUSH ES)
+0000 0001 (POP ES)
+
+PUSH ES (+00) = 0000 0110 = 06
+PUSH CS (+08) = 0000 1110 = 0E
+PUSH SS (+10) = 0001 0110 = 16
+PUSH DS (+18) = 0001 1110 = 1E
+
+POP ES (+00) = 0000 0111 = 07
+POP CS (+08) = 0000 1111 = 0F
+POP SS (+10) = 0001 0111 = 17
+POP DS (+18) = 0001 1111 = 1F
+
+ADD DL, 20h
+       S W  MOD     R/M  DATA
+100000 0 0  11  000 010 0010 0000
+1000 0000 1100 0010 0010 0000 
+= 80 C2 20

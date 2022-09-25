@@ -1,0 +1,84 @@
+ARSIKOM meet 6, 8 April 2022
+
+Prosesor awal IDM -- 8086
+ISA x86 64x disebut ISA x64
+
+Terdapat perintah untuk eksekusi proses dalam sebuah komputer, dibawa oleh prosesor itu sendiiri.
+Setiap prosesor mempunyai kumpulan perintah perintah itu sendiri biasa disebut ISA.
+
+intel dan amd menggunakan arsitektur yang sama besar= 8086.
+
+Model perintah :
+Data Register = {AX, BX, CX, DX} //16 bit = 2byte, bisa diakses 1/2 (dibagi 2 operan)
+Pointer Register = {SP, BP}
+Index Register = {SI, DI}
+
+AX = 2 byte
+AL / AH = 1/2 AX = 1 byte
+BL / BH = 1/2 AX = 1 byte
+AX = AL + BL
+2 byte = 1 byte + 1 byte
+
+AL = 1 byte
+1 byte W = 0 (false)
+2 byte W = 1 (true)
+
+Perintah :
+AAD AX, BX //Menjumlahkan AX dengan BX -- 2 operan
+JMP label1 //Lompat ke alamat tujuan -- 1 operan
+INC AX //income --1 operan
+
+AAD AX, BX , CX != 3 operan, max 2 operan
+
+MOV AX, BX //memindahkan/mengisi (copy nilai) BX ke AX -- DIRECT
+MOV AX, 25 //Nilai AX berisi 25 --???
+analogi #C = A = A + 25;
+
+bil1 DW 35 // membuat variable, DW memesan data 35 ditaruh di bil1
+MOV AX, bil1 //copy alamat memori bil1 ke AX, maka nilai AX = 25+isi AX -- DIRECT
+analogi #C = A = A + bil1;
+
+MOV AX, [BX] // BX berisi suatu alamat data memori, nilai data tersebut akan dimasukkan ke AX -- INDIRECT/POINTER
+analogi #C = A = *B;
+
+ADD AX, bil1
+
+https://www.includehelp.com/embedded-system/instruction-format-in-8086-microprocessor.aspx
+
+8 bit = 1 byte
+2 byte = 1 word
+
+OpCode D W MOD REG R/M  // format instruksi mesin format 8086
+000010 1 1 11  000 000
+
+Bahasa assembly = bahasa pemrograman yang memapping 1 perintah assembly. 
+
+https://www.eeeguide.com/8086-instruction-format/
+
+Format Instruksi 8086 Instruksi 8086 bervariasi dari 1 sampai 6 byte panjangnya.
+2 byte untuk sintak nya, 4 byte sisa untuk operannya.
+
+OpCode destination , source
+MOV    BL, AL
+100010 0   0   11  000 011
+OpCode D   W   MOD REG R/M
+
+D = AL source operan = 0
+nilai akhir X = 2 byte
+
+AL = 1 byte
+1 byte W = 0 (false)
+2 byte W = 1 (true)
+
+MOD = 11 (register mode = register to register)
+REG = 000 (code for AL)
+R/M = 011 (destination is BL)
+
+REG AX = 000
+
+MOV     DX, AX
+100010  0   1  11   000  010
+OpCode  D   W  MOD  REG  R/M
+Hasil Di Program Processor Memory = 1000100111000010
+
+https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
